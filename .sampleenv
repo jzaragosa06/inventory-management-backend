@@ -1,0 +1,13 @@
+PORT=3000
+
+DB_TYPE="mysql" 
+DB_HOST="locahost"
+DB_PORT=3306
+DB_USERNAME="root"
+DB_PASSWORD=""
+DB_NAME="inventory_db"
+
+JWT_SECRET="abc123abc"
+
+#FOR DEPLOYMENT
+CLIENT_ORIGIN="vercel.app"
