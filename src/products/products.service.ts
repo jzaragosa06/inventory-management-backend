@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
@@ -19,6 +18,10 @@ export class ProductsService {
 
     findAll(): Promise<Product[]> {
         return this.productRepo.find();
+    }
+
+    findOne(id: number): Promise<Product | null> {
+        return this.productRepo.findOneBy({id})
     }
 
     search(query: string): Promise<Product[]> {
