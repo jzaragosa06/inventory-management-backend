@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
 import { Like, Repository } from 'typeorm';
@@ -29,5 +29,16 @@ export class ProductsService {
             {name: Like(`%${query}%`)}, 
             {description: Like(`%${query}%`)}
         ]})
+    }
+
+   async deleteOne(id: number): Promise<Product> {
+        const product = await this.productRepo.findOneBy({id});
+
+        if (!product) {
+            throw new NotFoundException(`product not found`);
+        }
+
+        await this.productRepo.delete(id);
+        return product;
     }
 }
