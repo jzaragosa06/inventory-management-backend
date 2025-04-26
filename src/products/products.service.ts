@@ -30,7 +30,7 @@ export class ProductsService {
 
     async findOne(id: number): Promise<Product> {
         try {
-            const product = await this.productRepo.findOneBy({ id });
+            const product = await this.productRepo.findOne({ where: { id } });
             if (!product) {
                 throw new NotFoundException(`Product with ID ${id} not found`);
             }
@@ -53,14 +53,14 @@ export class ProductsService {
         }
     }
 
-    async deleteOne(id: number): Promise<Product> {
+    async deleteOne(id: number): Promise<{message: string, deleted: Product}> {
         try {
             const product = await this.productRepo.findOneBy({ id });
             if (!product) {
                 throw new NotFoundException(`Product with ID ${id} not found`);
             }
             await this.productRepo.delete(id);
-            return product;
+            return {message: "successfull deleted", deleted: product,};
         } catch (error) {
             if (error instanceof NotFoundException) {
                 throw error;
