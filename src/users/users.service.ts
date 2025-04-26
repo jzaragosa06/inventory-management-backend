@@ -15,4 +15,12 @@ export class UsersService {
     const user = this.userRepository.create(data);
     return this.userRepository.save(user);
   }
+
+  async findOneByEmail(email: string): Promise<User | null> {
+    return this.userRepository.findOne({ where: { email } });
+  }
+
+  async findOneById(id: number): Promise<User | null> {
+    return this.userRepository.findOne({ where: { id } });
+  }
 }

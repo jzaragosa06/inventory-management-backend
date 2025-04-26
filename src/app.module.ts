@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ProductsModule } from './products/products.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -18,6 +20,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: process.env.DB_NAME || 'inventory_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
+    }),
+    AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
     }),
   ],
   controllers: [AppController],
