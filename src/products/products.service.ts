@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
 import { Like, Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
+import { UpdateProductDto } from './dto/update-product.dto';
 
 @Injectable()
 export class ProductsService {
@@ -66,6 +67,23 @@ export class ProductsService {
                 throw error;
             }
             throw new InternalServerErrorException('Failed to delete product');
+        }
+    }
+
+    async update(id: number, updateData: UpdateProductDto): Promise<{message: string, updated: Product}> {
+        try {
+            const product = await this.productRepo.findOneBy({id}); 
+
+            if (!product) {
+                throw new NotFoundException('Product not found');
+            }
+            
+            //merge the needs to be updated into the product entry
+            this.productRepo.merge(product, updateData); 
+            const updatedProduct = await this.productRepo.save(product); 
+            return {message: 'product updated successfully', updated: updatedProduct}
+        } catch (error) {
+            throw new InternalServerErrorException('Failed to update product'); 
         }
     }
 }
