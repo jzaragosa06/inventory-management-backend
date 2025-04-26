@@ -45,13 +45,9 @@ $ npm run test:e2e
 ```
 
 ## Deployment
+The backend is deployed on `Vercel`. It uses a Mysql database that is deployed on `Stack Hero`. 
 
-Lorem ipsum
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+Refer to this `React Web application`: http://vercel.com for UI that uses the backend API of Inventory Management System. 
 
 lorem ipsum
 
