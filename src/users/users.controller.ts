@@ -15,12 +15,4 @@ import { UserRole } from 'src/shared/enum/role.enum';
 
 @Controller('users')
 @UseGuards(AuthGuard('jwt'), RolesGuard)
-export class UserController {
-  constructor(private readonly userService: UsersService) {}
-
-  @Post()
-  @SetMetadata('roles', [UserRole.ADMIN])
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
-}
+export class UserController {}
