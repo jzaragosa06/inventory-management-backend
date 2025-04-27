@@ -14,8 +14,8 @@ import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { AuthGuard } from '@nestjs/passport';
-import { RolesGuard } from 'src/auth/roles.guard';
-import { UserRole } from 'src/shared/enum/role.enum';
+import { RolesGuard } from '../auth/roles.guard';
+import { UserRole } from '../shared/enum/role.enum';  
 import {
   ApiTags,
   ApiOperation,
