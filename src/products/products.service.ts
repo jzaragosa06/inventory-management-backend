@@ -44,10 +44,11 @@ export class ProductsService {
     async search(query: string): Promise<Product[]> {
         try {
             return await this.productRepo.find({
-                where: [
-                    { name: Like(`%${query}%`) },
-                    { description: Like(`%${query}%`) }
-                ]
+              where: [
+                { name: Like(`%${query}%`) },
+                { description: Like(`%${query}%`) },
+                { category: Like(`%${query}%`) },
+              ],
             });
         } catch (error) {
             throw new InternalServerErrorException('Failed to search products');
