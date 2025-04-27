@@ -33,7 +33,11 @@ To run the backend on the local computer (localhost). The project is running on 
 $ npm run start:dev
 
 ```
-
+## Unit Test
+Unit test is implemented to test the that the backend endpoint works as expected. The unit testing is implemented to `products` only. 
+```
+npm test products
+```
 
 ## Deployment
 The backend is deployed on `Render.com`. It uses a Mysql database that is deployed on `Stack Hero`. 
