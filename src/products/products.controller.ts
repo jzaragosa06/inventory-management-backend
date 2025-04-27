@@ -63,21 +63,6 @@ export class ProductsController {
     return this.productServices.findAll();
   }
 
-  @Get(':id')
-  @ApiOperation({ summary: 'Get a product by id' })
-  @ApiParam({ name: 'id', type: 'number', description: 'Product ID' })
-  @ApiResponse({
-    status: 200,
-    description: 'Return the product.',
-    type: Product,
-  })
-  @ApiResponse({ status: 404, description: 'Product not found.' })
-  @ApiResponse({ status: 500, description: 'Failed to fetch product.' })
-  @SetMetadata('roles', [UserRole.ADMIN, UserRole.AUDITOR, UserRole.USER])
-  findOne(@Param('id') id: number) {
-    return this.productServices.findOne(id);
-  }
-
   @Get('search')
   @ApiOperation({ summary: 'Search products by name or description' })
   @ApiQuery({
@@ -95,6 +80,21 @@ export class ProductsController {
   @SetMetadata('roles', [UserRole.ADMIN, UserRole.AUDITOR, UserRole.USER])
   search(@Query('query') query: string) {
     return this.productServices.search(query);
+  }
+
+  @Get(':id')
+  @ApiOperation({ summary: 'Get a product by id' })
+  @ApiParam({ name: 'id', type: 'number', description: 'Product ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'Return the product.',
+    type: Product,
+  })
+  @ApiResponse({ status: 404, description: 'Product not found.' })
+  @ApiResponse({ status: 500, description: 'Failed to fetch product.' })
+  @SetMetadata('roles', [UserRole.ADMIN, UserRole.AUDITOR, UserRole.USER])
+  findOne(@Param('id') id: number) {
+    return this.productServices.findOne(id);
   }
 
   @Delete(':id')
