@@ -23,6 +23,6 @@ export class Product {
   category: string;
 
   @ApiProperty({ example: 999.99, description: 'Product price' })
-  @Column('decimal')
+  @Column('decimal', { precision: 10, scale: 2 })
   price: number;
 }

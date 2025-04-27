@@ -15,6 +15,8 @@ export class ProductsService {
     async create(data: CreateProductDto): Promise<Product> {
         try {
             const product = this.productRepo.create(data);
+            console.log('product', product);
+            
             return await this.productRepo.save(product);
         } catch (error) {
             throw new InternalServerErrorException('Failed to create product');
